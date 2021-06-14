@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Demo App</string>
+    <string name="contacts">Contactos</string>
+    <string name="first_name">Primer nombre</string>
+    <string name="last_name">Apellido</string>
+    <string name="birthday">Cumpleaños</string>
+    <string name="city">Ciudad</string>
+    <string name="phone">Número de teléfono</string>
+    <string name="notes">Notas</string>
+</resources>
