@@ -14,7 +14,8 @@
             android:id="@+id/photo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp" />
+            android:layout_marginBottom="16dp"
+            tools:src="@tools:sample/avatars" />
         
         <TextView
             android:id="@+id/first_name_label"
@@ -27,7 +28,8 @@
             android:id="@+id/first_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp" />
+            android:layout_marginBottom="16dp"
+            tools:text="@tools:sample/first_names" />
         
         <TextView
             android:id="@+id/last_name_label"
@@ -40,7 +42,8 @@
             android:id="@+id/last_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp" />
+            android:layout_marginBottom="16dp"
+            tools:text="@tools:sample/last_names" />
         
         <TextView
             android:id="@+id/birthday_label"
@@ -53,7 +56,8 @@
             android:id="@+id/birthday"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp" />
+            android:layout_marginBottom="16dp"
+            tools:text="@tools:sample/date/mmddyy" />
         
         <TextView
             android:id="@+id/city_label"
@@ -66,7 +70,8 @@
             android:id="@+id/city"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp" />
+            android:layout_marginBottom="16dp"
+            tools:text="@tools:sample/cities" />
         
         <TextView
             android:id="@+id/phone_label"
@@ -79,7 +84,8 @@
             android:id="@+id/phone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp" />
+            android:layout_marginBottom="16dp"
+            tools:text="@tools:sample/us_phones"/>
         
         <TextView
             android:id="@+id/notes_label"
@@ -92,6 +98,7 @@
             android:id="@+id/notes"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp" />
+            android:layout_marginBottom="16dp"
+            tools:text="@tools:sample/lorem[50]"/>
     </LinearLayout>
 </ScrollView>
