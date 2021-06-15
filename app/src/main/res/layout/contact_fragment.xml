@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.main.MainFragment">
+    tools:context=".ui.contacts.ContactFragment">
     
     <TextView
         android:id="@+id/title_view"
@@ -15,7 +15,7 @@
         android:textSize="36sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/toolbar" />
     
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/contacts_recycler_view"
