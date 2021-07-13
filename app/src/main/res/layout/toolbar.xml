@@ -4,6 +4,6 @@
     style="@style/Theme.DemoApp.Toolbar"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:showIn="@layout/main_activity"
+    tools:showIn="@layout/contact_activity"
     tools:menu="@menu/contact_options"
     tools:title="Contacts" />

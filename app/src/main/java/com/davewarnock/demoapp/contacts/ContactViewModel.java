@@ -1,4 +1,4 @@
-package com.davewarnock.demoapp.ui.contacts;
+package com.davewarnock.demoapp.contacts;
 
 import androidx.lifecycle.ViewModel;
 

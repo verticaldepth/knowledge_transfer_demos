@@ -8,4 +8,7 @@
     <string name="phone">Phone Number</string>
     <string name="notes">Notes</string>
     <string name="add_contact">Add Contact</string>
+    <string name="contacts_activity">Contacts Activity</string>
+    <string name="group_chat_activity">Group Chat Activity</string>
+    <string name="send">Send</string>
 </resources>

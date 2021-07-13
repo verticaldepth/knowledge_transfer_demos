@@ -14,24 +14,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
     
-    <Button
-        android:id="@+id/contacts_button"
+    <fragment
+        android:name="com.davewarnock.demoapp.contacts.ContactFragment"
         android:layout_width="0dp"
-        android:layout_margin="16dp"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        tools:layout="@layout/contact_fragment"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/toolbar"
-        android:text="@string/contacts_activity"/>
-    
-    <Button
-        android:id="@+id/groupchat_button"
-        android:layout_width="0dp"
-        android:layout_margin="16dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/contacts_button"
-        android:text="@string/group_chat_activity"/>
+        app:layout_constraintTop_toBottomOf="@id/toolbar" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
