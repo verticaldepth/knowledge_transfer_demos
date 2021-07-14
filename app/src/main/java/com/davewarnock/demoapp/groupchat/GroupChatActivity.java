@@ -6,6 +6,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.davewarnock.demoapp.R;
 
@@ -13,7 +14,6 @@ import java.util.List;
 
 public class GroupChatActivity extends AppCompatActivity {
 
-    GroupChatController controller;
     ListView messagesView;
     EditText messageEntryView;
     GroupChatMessageAdapter adapter;
@@ -22,26 +22,32 @@ public class GroupChatActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.groupchat_activity);
-        this.controller = new GroupChatController(this);
         messageEntryView = findViewById(R.id.group_chat_enter_message);
         messagesView = findViewById(R.id.group_chat_list);
         adapter = new GroupChatMessageAdapter(this);
         messagesView.setAdapter(adapter);
+        final GroupChatViewModel viewModel =
+                new ViewModelProvider(this).get(GroupChatViewModel.class);
+        viewModel.getLiveData().observe(this, this::setMessages);
+        setSendButtonListener((btn) -> {
+            viewModel.sendMessage(getMessage());
+            clearMessage();
+        });
     }
 
     public void setSendButtonListener(View.OnClickListener listener) {
         findViewById(R.id.group_chat_send_message).setOnClickListener(listener);
     }
 
-    public String getMessage() {
+    private String getMessage() {
         return messageEntryView.getText().toString();
     }
 
-    public void clearMessage() {
+    private void clearMessage() {
         messageEntryView.setText("");
     }
 
-    public void setMessages(List<GroupChatMessage> messages) {
+    private void setMessages(List<GroupChatMessage> messages) {
         adapter.clear();
         adapter.addAll(messages);
         adapter.notifyDataSetChanged();
