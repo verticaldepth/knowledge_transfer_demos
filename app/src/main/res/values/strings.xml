@@ -15,7 +15,12 @@
     <string name="contacts_recycler_label">Recycler</string>
     <string name="send">Send</string>
     <string name="performance_string">Views Created: %d, Time To Bind: %dms</string>
-    <string name="performance_string_loading">Loading...</string>
+    <string name="performance_string_loading">Loading…</string>
     <string name="refresh">Refresh</string>
     <string name="regenerate">Regenerate</string>
+    
+    <!-- Special Tag Identifiers, bit of a hack -->
+    <string name="tag_contact_fragment">ContactFragment</string>
+    <string name="tag_contact_adapter_fragment">ContactAdapterFragment</string>
+    <string name="tag_contact_recycler_fragment">ContactRecyclerFragment</string>
 </resources>

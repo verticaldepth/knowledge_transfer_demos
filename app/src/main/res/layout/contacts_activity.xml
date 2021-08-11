@@ -23,27 +23,27 @@
         app:layout_constraintTop_toBottomOf="@id/toolbar">
         
         <com.google.android.material.tabs.TabItem
-            android:id="@+id/raw_tab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:contentDescription="@string/tag_contact_fragment"
             android:text="@string/contacts_raw_label" />
         
         <com.google.android.material.tabs.TabItem
-            android:id="@+id/adapter_tab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:contentDescription="@string/tag_contact_adapter_fragment"
             android:text="@string/contacts_adapter_label" />
         
         <com.google.android.material.tabs.TabItem
-            android:id="@+id/recycler_tab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:contentDescription="@string/tag_contact_recycler_fragment"
             android:text="@string/contacts_recycler_label" />
     
     </com.google.android.material.tabs.TabLayout>
     
-    <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/pager"
+    <FrameLayout
+        android:id="@+id/fragment_holder"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"

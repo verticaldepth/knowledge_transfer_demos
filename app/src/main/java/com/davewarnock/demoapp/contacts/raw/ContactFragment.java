@@ -20,11 +20,13 @@ import java.util.List;
 
 public class ContactFragment extends AbstractContactsFragment {
 
+    public static final String FRAGMENT_TAG = "ContactFragment";
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.contacts_fragment_raw, container);
+        return inflater.inflate(R.layout.contacts_fragment_raw, container, false);
     }
 
     @Override
@@ -37,7 +39,7 @@ public class ContactFragment extends AbstractContactsFragment {
             if (entry.isHeader()) {
                 createAndAddHeader(layout, inflater, entry.getHeader());
                 viewCount++;
-            } else {
+            } else if (entry.isContact()) {
                 createAndAddContact(layout, inflater, entry.getContactModel());
                 viewCount++;
             }

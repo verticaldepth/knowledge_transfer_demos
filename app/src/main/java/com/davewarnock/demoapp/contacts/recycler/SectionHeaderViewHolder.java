@@ -1,19 +1,22 @@
 package com.davewarnock.demoapp.contacts.recycler;
 
-import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
 import com.davewarnock.demoapp.contacts.ContactListElementViewModel;
 
-public class HeaderViewHolder extends AbstractContactViewHolder {
+class SectionHeaderViewHolder extends AbstractContactViewHolder {
 
-    public HeaderViewHolder(@NonNull Button itemView) {
+    private TextView view;
+
+    SectionHeaderViewHolder(@NonNull TextView itemView) {
         super(itemView);
+        this.view = itemView;
     }
 
     @Override
     void bind(ContactListElementViewModel model) {
-        // Do nothing, nothing to bind.
+        this.view.setText(model.getHeader());
     }
 }

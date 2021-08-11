@@ -18,6 +18,8 @@ import java.util.List;
 
 public class ContactRecyclerFragment extends AbstractContactsFragment {
 
+    public static final String FRAGMENT_TAG = "ContactRecyclerFragment";
+
     private RecyclerView contactsView;
     private ContactsRecyclerAdapter adapter;
 
@@ -25,7 +27,7 @@ public class ContactRecyclerFragment extends AbstractContactsFragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.contacts_fragment_recycler, container);
+        return inflater.inflate(R.layout.contacts_fragment_recycler, container, false);
     }
 
     @Override

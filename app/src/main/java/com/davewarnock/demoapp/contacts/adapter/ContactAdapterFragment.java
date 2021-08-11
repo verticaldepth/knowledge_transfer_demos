@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ListView;
 
 import androidx.annotation.NonNull;
@@ -17,6 +18,8 @@ import java.util.List;
 
 public class ContactAdapterFragment extends AbstractContactsFragment {
 
+    public static final String FRAGMENT_TAG = "ContactAdapterFragment";
+
     private ListView contactsView;
     private ContactListAdapter adapter;
 
@@ -24,7 +27,7 @@ public class ContactAdapterFragment extends AbstractContactsFragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.contacts_fragment_adapter, container);
+        return inflater.inflate(R.layout.contacts_fragment_adapter, container, false);
     }
 
     @Override
@@ -34,6 +37,7 @@ public class ContactAdapterFragment extends AbstractContactsFragment {
         adapter = new ContactListAdapter(requireContext());
         contactsView.setAdapter(adapter);
         adapter.getViewCount().observe(getViewLifecycleOwner(), this::setViewCount);
+        contactsView.addHeaderView(inflateListHeaderView(contactsView));
     }
 
     @Override
@@ -41,5 +45,11 @@ public class ContactAdapterFragment extends AbstractContactsFragment {
         adapter.clear();
         adapter.addAll(contactListElementViewModels);
         adapter.notifyDataSetChanged();
+    }
+
+    private Button inflateListHeaderView(ViewGroup parent) {
+        return (Button) LayoutInflater
+                .from(parent.getContext())
+                .inflate(R.layout.contact_list_header, parent, false);
     }
 }

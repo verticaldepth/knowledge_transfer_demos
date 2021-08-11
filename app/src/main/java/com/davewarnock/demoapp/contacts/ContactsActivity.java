@@ -9,31 +9,27 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.viewpager2.adapter.FragmentStateAdapter;
-import androidx.viewpager2.widget.ViewPager2;
 
 import com.davewarnock.demoapp.R;
 import com.davewarnock.demoapp.contacts.adapter.ContactAdapterFragment;
 import com.davewarnock.demoapp.contacts.raw.ContactFragment;
 import com.davewarnock.demoapp.contacts.recycler.ContactRecyclerFragment;
 import com.google.android.material.tabs.TabLayout;
-import com.google.android.material.tabs.TabLayoutMediator;
 
 public class ContactsActivity extends AppCompatActivity {
+
+    private TabLayout tabLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.contacts_activity);
-        ViewPager2 viewPager = findViewById(R.id.pager);
-        ContactsPagerAdapter pagerAdapter = new ContactsPagerAdapter(this);
-        viewPager.setAdapter(pagerAdapter);
-        TabLayout tabLayout = findViewById(R.id.contacts_tab_layout);
-        TabLayoutMediator mediator =
-                new TabLayoutMediator(tabLayout, viewPager, new ContactsTabConfigurationStrategy());
-        mediator.attach();
+        tabLayout = findViewById(R.id.contacts_tab_layout);
+        tabLayout.addOnTabSelectedListener(new TabSelectionListener());
+        tabLayout.selectTab(tabLayout.getTabAt(0));
         Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle(R.string.contacts_activity);
         setSupportActionBar(toolbar);
@@ -62,58 +58,53 @@ public class ContactsActivity extends AppCompatActivity {
         return false;
     }
 
-    /**
-     * A simple pager adaptor for the 3 fragments.
-     */
-    private static class ContactsPagerAdapter extends FragmentStateAdapter {
+    private class TabSelectionListener implements TabLayout.OnTabSelectedListener {
 
-        public ContactsPagerAdapter(@NonNull FragmentActivity fragmentActivity) {
-            super(fragmentActivity);
+        @Override
+        public void onTabSelected(TabLayout.Tab tab) {
+            // This is bad code, but all solutions are hacks
+            // See https://stackoverflow.com/q/51537672
+            setFragment(tab.getContentDescription().toString());
         }
 
         @Override
-        public Fragment createFragment(int position) {
-            switch (position) {
-                case 0:
-                    return new ContactFragment();
-
-                case 1:
-                    return new ContactAdapterFragment();
-
-                case 2:
-                    return new ContactRecyclerFragment();
-            }
-            return null;
+        public void onTabUnselected(TabLayout.Tab tab) {
+            // Nothing
         }
 
         @Override
-        public int getItemCount() {
-            return 3;
+        public void onTabReselected(TabLayout.Tab tab) {
+            // Nothing
         }
     }
 
     /**
-     * Basic implementation of tab config strategy that we only need because it's required to
-     * implement one.
+     * Sets the current fragment
+     *
+     * @param tag MockTag for the fragment.
      */
-    private static class ContactsTabConfigurationStrategy
-            implements TabLayoutMediator.TabConfigurationStrategy {
-
-        @Override
-        public void onConfigureTab(@NonNull TabLayout.Tab tab, int position) {
-            switch (position) {
-                case 0:
-                    tab.setText(R.string.contacts_raw_label);
+    private void setFragment(String tag) {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        Fragment fragment = fragmentManager.findFragmentByTag(tag);
+        if (fragment == null) {
+            switch (tag) {
+                case ContactFragment.FRAGMENT_TAG:
+                    fragment = new ContactFragment();
                     break;
-
-                case 1:
-                    tab.setText(R.string.contacts_adapter_label);
+                case ContactAdapterFragment.FRAGMENT_TAG:
+                    fragment = new ContactAdapterFragment();
                     break;
-
-                case 2:
-                    tab.setText(R.string.contacts_recycler_label);
+                case ContactRecyclerFragment.FRAGMENT_TAG:
+                    fragment = new ContactRecyclerFragment();
                     break;
+                default:
+                    throw new IllegalStateException("Unknown Fragment Tag");
             }
         }
+        if (fragment.isAdded()) {
+            fragmentManager.beginTransaction().remove(fragment).commit();
+        }
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.fragment_holder, fragment, tag).commit();
     }
 }

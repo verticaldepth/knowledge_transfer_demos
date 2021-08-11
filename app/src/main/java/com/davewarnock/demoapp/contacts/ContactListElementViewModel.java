@@ -7,6 +7,11 @@ public class ContactListElementViewModel {
     private final String header;
     private final ContactModel contactModel;
 
+    public ContactListElementViewModel() {
+        this.header = null;
+        this.contactModel = null;
+    }
+
     public ContactListElementViewModel(String header) {
         this.header = header;
         contactModel = null;
@@ -17,8 +22,16 @@ public class ContactListElementViewModel {
         this.contactModel = contactModel;
     }
 
+    public boolean isListHeaderPlaceholder() {
+        return header == null && contactModel == null;
+    }
+
     public boolean isHeader() {
         return header != null;
+    }
+
+    public boolean isContact() {
+        return contactModel != null;
     }
 
     public String getHeader() {

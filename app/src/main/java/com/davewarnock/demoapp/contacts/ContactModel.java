@@ -52,12 +52,14 @@ public class ContactModel {
             return false;
         }
         ContactModel that = (ContactModel) o;
-        return avatar == that.avatar && Objects.equals(name, that.name) && Objects.equals(
-                phoneNumber, that.phoneNumber) && Objects.equals(email, that.email);
+        return avatar == that.avatar && Objects.equals(id, that.id) && Objects.equals(name,
+                                                                                      that.name)
+               && Objects.equals(phoneNumber, that.phoneNumber) && Objects.equals(email,
+                                                                                  that.email);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(avatar, name, phoneNumber, email);
+        return Objects.hash(id, avatar, name, phoneNumber, email);
     }
 }
