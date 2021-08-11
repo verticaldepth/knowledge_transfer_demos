@@ -11,10 +11,15 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class ContactsActivityViewModel extends ViewModel {
 
     private static final int MOCK_DATA_ENTRIES = 50;
+
+    private static final ExecutorService THREAD_EXECUTOR =
+            Executors.newSingleThreadScheduledExecutor();
 
     private MutableLiveData<List<ContactListElementViewModel>> liveData;
 
@@ -33,6 +38,12 @@ public class ContactsActivityViewModel extends ViewModel {
     }
 
     public void regenerateData(Context context) {
+        if (liveData != null) {
+            THREAD_EXECUTOR.submit(() -> doRegenerateData(context));
+        }
+    }
+
+    private void doRegenerateData(Context context) {
         if (liveData != null) {
             Collection<ContactModel> rawData =
                     MockContactFactory.create(MOCK_DATA_ENTRIES, context);
