@@ -29,10 +29,11 @@ public class ContactsActivity extends AppCompatActivity {
         setContentView(R.layout.contacts_activity);
         tabLayout = findViewById(R.id.contacts_tab_layout);
         tabLayout.addOnTabSelectedListener(new TabSelectionListener());
-        tabLayout.selectTab(tabLayout.getTabAt(0));
         Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle(R.string.contacts_activity);
         setSupportActionBar(toolbar);
+        tabLayout.selectTab(null);
+        tabLayout.selectTab(tabLayout.getTabAt(0));
     }
 
     @Override
@@ -62,9 +63,11 @@ public class ContactsActivity extends AppCompatActivity {
 
         @Override
         public void onTabSelected(TabLayout.Tab tab) {
-            // This is bad code, but all solutions are hacks
-            // See https://stackoverflow.com/q/51537672
-            setFragment(tab.getContentDescription().toString());
+            if (tab != null) {
+                // This is bad code, but all solutions are hacks
+                // See https://stackoverflow.com/q/51537672
+                setFragment(tab.getContentDescription().toString());
+            }
         }
 
         @Override
