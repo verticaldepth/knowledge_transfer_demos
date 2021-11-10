@@ -10,6 +10,7 @@
     <string name="add_contact">Add Contact</string>
     <string name="contacts_activity">Contacts Activity</string>
     <string name="group_chat_activity">Group Chat Activity</string>
+    <string name="chat_home_activity">Chat Home Activity</string>
     <string name="contacts_raw_label">Raw</string>
     <string name="contacts_adapter_label">Adapter</string>
     <string name="contacts_recycler_label">Recycler</string>

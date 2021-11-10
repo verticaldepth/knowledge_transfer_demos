@@ -17,21 +17,31 @@
     <Button
         android:id="@+id/contacts_button"
         android:layout_width="0dp"
-        android:layout_margin="16dp"
         android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:text="@string/contacts_activity"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/toolbar"
-        android:text="@string/contacts_activity"/>
+        app:layout_constraintTop_toBottomOf="@id/toolbar" />
     
     <Button
         android:id="@+id/groupchat_button"
         android:layout_width="0dp"
-        android:layout_margin="16dp"
         android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:text="@string/group_chat_activity"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/contacts_button"
-        android:text="@string/group_chat_activity"/>
+        app:layout_constraintTop_toBottomOf="@id/contacts_button" />
+    
+    <Button
+        android:id="@+id/chathome_button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:text="@string/chat_home_activity"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/groupchat_button" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

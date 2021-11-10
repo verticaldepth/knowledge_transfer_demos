@@ -7,6 +7,7 @@ import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import com.davewarnock.demoapp.chathome.ChatHomeActivity;
 import com.davewarnock.demoapp.contacts.ContactsActivity;
 import com.davewarnock.demoapp.groupchat.GroupChatActivity;
 
@@ -18,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.main_activity);
         setupContactsButton();
         setupGroupChatButton();
+        setupChatHomeButton();
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         toolbar.setTitle(R.string.app_name);
@@ -34,6 +36,13 @@ public class MainActivity extends AppCompatActivity {
         View view = findViewById(R.id.groupchat_button);
         view.setOnClickListener(btn -> {
             startActivity(new Intent(this, GroupChatActivity.class));
+        });
+    }
+
+    private void setupChatHomeButton() {
+        View view = findViewById(R.id.chathome_button);
+        view.setOnClickListener(btn -> {
+            startActivity(new Intent(this, ChatHomeActivity.class));
         });
     }
 }

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.davewarnock.demoapp.chathome.ChatView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="8dp">
+    
+    <ImageView
+        android:id="@+id/image_thumbnail"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@sample/ai_people" />
+    
+    <TextView
+        android:id="@+id/chat_name"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="12dp"
+        android:gravity="center_vertical"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+        app:layout_constraintBottom_toTopOf="@id/last_message"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/image_thumbnail"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="@tools:sample/full_names" />
+    
+    <TextView
+        android:id="@+id/last_message_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Today" />
+    
+    <TextView
+        android:id="@+id/last_message"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="12dp"
+        android:ellipsize="end"
+        android:gravity="center_vertical"
+        android:maxLines="1"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/read_mark"
+        app:layout_constraintStart_toEndOf="@id/image_thumbnail"
+        app:layout_constraintTop_toBottomOf="@id/chat_name"
+        tools:text="@tools:sample/lorem/random" />
+    
+    <ImageView
+        android:id="@+id/read_mark"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="8dp"
+        android:src="@drawable/ic_baseline_check_24"
+        app:layout_constraintBottom_toBottomOf="@id/last_message"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/last_message"
+        app:layout_constraintTop_toTopOf="@id/last_message"
+        tools:tint="@color/design_default_color_primary" />
+
+</com.davewarnock.demoapp.chathome.ChatView>
