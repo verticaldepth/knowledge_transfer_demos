@@ -5,12 +5,16 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
+import com.google.common.truth.Truth;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * A bad example of a unit test.
@@ -38,13 +42,12 @@ public class SpamMessageDetectorTest {
 
     @Test
     public void logMessageSent() {
-        for (SpamMessageDetector detector : new SpamMessageDetector[]{
-                spamDetectorNormal, spamDetectorNotConfigured
-        }) {
-            detector.logMessageSent(testMessage1UserA);
-            detector.logMessageSent(testMessage2UserA);
-            detector.logMessageSent(testMessage3UserB);
-        }
+        SpamMessageDetector spamDetectorNotConfigured = new SpamMessageDetector(-1, null);
+        GroupChatMessage testMessage = new GroupChatMessage(0, "Kenobi", "Hello");
+        spamDetectorNotConfigured.logMessageSent(testMessage);
+        Truth
+                .assertThat(spamDetectorNotConfigured.getLastMessages())
+                .containsEntry(testMessage.getSender(), testMessage);
     }
 
     @Test
@@ -73,12 +76,28 @@ public class SpamMessageDetectorTest {
     }
 
     @Test
-    public void isPermittedMessage() {
-        assertTrue(spamDetectorNotConfigured.isPermittedMessage(testMessage1UserA));
-        assertTrue(spamDetectorNotConfigured.isPermittedMessage(testMessage2UserA));
-        assertTrue(spamDetectorNotConfigured.isPermittedMessage(testMessage3UserB));
-        assertTrue(spamDetectorNormal.isPermittedMessage(testMessage1UserA));
-        assertTrue(spamDetectorNormal.isPermittedMessage(testMessage1UserA));
-        assertFalse(spamDetectorNormal.isPermittedMessage(testMessage3UserB));
+    public void testMessageAcceptedWhenNoForbiddenTerms() {
+        SpamMessageDetector spamDetectorNotConfigured = new SpamMessageDetector(-1, null);
+        GroupChatMessage testMessage = new GroupChatMessage(0, "Kenobi", "Hello");
+        assertTrue(spamDetectorNotConfigured.isPermittedMessage(testMessage));
+        Truth.assertThat(spamDetectorNotConfigured.isPermittedMessage(testMessage)).isTrue();
+    }
+
+    @Test
+    public void testMessageWithForbiddenTermIsRejected() {
+        List<String> forbiddenTerms = new ArrayList<>();
+        forbiddenTerms.add("ForbiddenTerm");
+        SpamMessageDetector spamDetector = new SpamMessageDetector(-1, forbiddenTerms);
+        GroupChatMessage testMessage = new GroupChatMessage(0, "Kenobi", "I am a ForbiddenTerm");
+        assertFalse(spamDetector.isPermittedMessage(testMessage));
+    }
+
+    @Test
+    public void testMessageWithNoForbiddenTermsIsAccepted() {
+        List<String> forbiddenTerms = new ArrayList<>();
+        forbiddenTerms.add("ForbiddenTerm");
+        SpamMessageDetector spamDetector = new SpamMessageDetector(-1, forbiddenTerms);
+        GroupChatMessage testMessage = new GroupChatMessage(0, "Kenobi", "I am not Forbidden");
+        assertTrue(spamDetector.isPermittedMessage(testMessage));
     }
 }

@@ -1,5 +1,7 @@
 package com.davewarnock.demoapp.groupchat;
 
+import androidx.annotation.VisibleForTesting;
+
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
@@ -46,5 +48,10 @@ public class SpamMessageDetector {
             }
         }
         return true;
+    }
+
+    @VisibleForTesting
+    public Map<String, GroupChatMessage> getLastMessages(){
+        return lastMessages;
     }
 }
