@@ -15,8 +15,8 @@ public class ChatViewModel {
     private final OffsetDateTime lastMessageTime;
     private final boolean read;
 
-    public ChatViewModel(String chatId, int avatar, String chatName, String lastMessage,
-                         OffsetDateTime messageTime, boolean read) {
+    public ChatViewModel(String chatId, @DrawableRes int avatar, String chatName,
+                         String lastMessage, OffsetDateTime messageTime, boolean read) {
         this.chatId = chatId;
         this.avatar = avatar;
         this.chatName = chatName;

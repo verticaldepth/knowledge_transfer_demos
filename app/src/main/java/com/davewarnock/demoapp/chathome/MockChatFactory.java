@@ -6,7 +6,6 @@ import android.util.Log;
 import androidx.annotation.DrawableRes;
 
 import com.davewarnock.demoapp.R;
-import com.davewarnock.demoapp.contacts.MockContactFactory;
 import com.github.javafaker.Faker;
 
 import java.time.Instant;
@@ -74,7 +73,7 @@ public class MockChatFactory {
             int resourceId =
                     context.getResources().getIdentifier(id, "drawable", context.getPackageName());
             if (resourceId == 0) {
-                Log.e(MockContactFactory.class.getSimpleName(), "Failed to load resource: " + id);
+                Log.e(MockChatFactory.class.getSimpleName(), "Failed to load resource: " + id);
             } else {
                 ALL_AVATAR_IDS.add(resourceId);
             }
