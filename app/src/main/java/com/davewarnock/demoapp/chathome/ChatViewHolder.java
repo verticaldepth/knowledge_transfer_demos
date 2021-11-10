@@ -13,6 +13,10 @@ public class ChatViewHolder extends RecyclerView.ViewHolder {
     }
 
     void bind(ChatViewModel viewModel) {
-        chatView.setData(viewModel);
+        chatView.setAvatar(viewModel.getAvatar());
+        chatView.setChatName(viewModel.getChatName());
+        chatView.setChatMessage(viewModel.getLastMessage());
+        chatView.setLastMessageDate(viewModel.getLastMessageTime());
+        chatView.setHasBeenRead(viewModel.isRead());
     }
 }

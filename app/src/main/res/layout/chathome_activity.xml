@@ -6,11 +6,12 @@
     android:layout_height="match_parent"
     android:padding="8dp">
     
-    <include
+    <com.davewarnock.demoapp.chathome.ChatView
         android:id="@+id/chat_pinned_room"
-        layout="@layout/chathome_view"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        app:chatName="Blah Blah Blah"
+        app:isRead="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

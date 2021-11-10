@@ -1,12 +1,9 @@
 package com.davewarnock.demoapp.chathome;
 
-import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.davewarnock.demoapp.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,9 +15,7 @@ public class ChatHomeAdapter extends RecyclerView.Adapter<ChatViewHolder> {
     @NonNull
     @Override
     public ChatViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        ChatView chatView = (ChatView) LayoutInflater
-                .from(parent.getContext())
-                .inflate(R.layout.chathome_view, parent);
+        ChatView chatView = new ChatView(parent.getContext());
         return new ChatViewHolder(chatView);
     }
 
